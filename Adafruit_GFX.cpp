@@ -1486,50 +1486,50 @@ void Adafruit_GFX::getTextBounds(const char *str, int16_t x, int16_t y,
     @param    h      The boundary height, set by function
 */
 /**************************************************************************/
-void Adafruit_GFX::getTextBounds(const String &str, int16_t x, int16_t y,
-                                 int16_t *x1, int16_t *y1, uint16_t *w,
-                                 uint16_t *h) {
-  if (str.length() != 0) {
-    getTextBounds(const_cast<char *>(str.c_str()), x, y, x1, y1, w, h);
-  }
-}
+// void Adafruit_GFX::getTextBounds(const String &str, int16_t x, int16_t y,
+//                                  int16_t *x1, int16_t *y1, uint16_t *w,
+//                                  uint16_t *h) {
+//   if (str.length() != 0) {
+//     getTextBounds(const_cast<char *>(str.c_str()), x, y, x1, y1, w, h);
+//   }
+// }
 
-/**************************************************************************/
-/*!
-    @brief    Helper to determine size of a PROGMEM string with current
-   font/size. Pass string and a cursor position, returns UL corner and W,H.
-    @param    str     The flash-memory ascii string to measure
-    @param    x       The current cursor X
-    @param    y       The current cursor Y
-    @param    x1      The boundary X coordinate, set by function
-    @param    y1      The boundary Y coordinate, set by function
-    @param    w      The boundary width, set by function
-    @param    h      The boundary height, set by function
-*/
-/**************************************************************************/
-void Adafruit_GFX::getTextBounds(const __FlashStringHelper *str, int16_t x,
-                                 int16_t y, int16_t *x1, int16_t *y1,
-                                 uint16_t *w, uint16_t *h) {
-  uint8_t *s = (uint8_t *)str, c;
+// /**************************************************************************/
+// /*!
+//     @brief    Helper to determine size of a PROGMEM string with current
+//    font/size. Pass string and a cursor position, returns UL corner and W,H.
+//     @param    str     The flash-memory ascii string to measure
+//     @param    x       The current cursor X
+//     @param    y       The current cursor Y
+//     @param    x1      The boundary X coordinate, set by function
+//     @param    y1      The boundary Y coordinate, set by function
+//     @param    w      The boundary width, set by function
+//     @param    h      The boundary height, set by function
+// */
+// /**************************************************************************/
+// void Adafruit_GFX::getTextBounds(const __FlashStringHelper *str, int16_t x,
+//                                  int16_t y, int16_t *x1, int16_t *y1,
+//                                  uint16_t *w, uint16_t *h) {
+//   uint8_t *s = (uint8_t *)str, c;
 
-  *x1 = x;
-  *y1 = y;
-  *w = *h = 0;
+//   *x1 = x;
+//   *y1 = y;
+//   *w = *h = 0;
 
-  int16_t minx = _width, miny = _height, maxx = -1, maxy = -1;
+//   int16_t minx = _width, miny = _height, maxx = -1, maxy = -1;
 
-  while ((c = pgm_read_byte(s++)))
-    charBounds(c, &x, &y, &minx, &miny, &maxx, &maxy);
+//   while ((c = pgm_read_byte(s++)))
+//     charBounds(c, &x, &y, &minx, &miny, &maxx, &maxy);
 
-  if (maxx >= minx) {
-    *x1 = minx;
-    *w = maxx - minx + 1;
-  }
-  if (maxy >= miny) {
-    *y1 = miny;
-    *h = maxy - miny + 1;
-  }
-}
+//   if (maxx >= minx) {
+//     *x1 = minx;
+//     *w = maxx - minx + 1;
+//   }
+//   if (maxy >= miny) {
+//     *y1 = miny;
+//     *h = maxy - miny + 1;
+//   }
+// }
 
 /**************************************************************************/
 /*!
@@ -1672,29 +1672,29 @@ void Adafruit_GFX_Button::initButtonUL(Adafruit_GFX *gfx, int16_t x1,
    'pressed'
 */
 /**************************************************************************/
-void Adafruit_GFX_Button::drawButton(bool inverted) {
-  uint16_t fill, outline, text;
+// void Adafruit_GFX_Button::drawButton(bool inverted) {
+//   uint16_t fill, outline, text;
 
-  if (!inverted) {
-    fill = _fillcolor;
-    outline = _outlinecolor;
-    text = _textcolor;
-  } else {
-    fill = _textcolor;
-    outline = _outlinecolor;
-    text = _fillcolor;
-  }
+//   if (!inverted) {
+//     fill = _fillcolor;
+//     outline = _outlinecolor;
+//     text = _textcolor;
+//   } else {
+//     fill = _textcolor;
+//     outline = _outlinecolor;
+//     text = _fillcolor;
+//   }
 
-  uint8_t r = min(_w, _h) / 4; // Corner radius
-  _gfx->fillRoundRect(_x1, _y1, _w, _h, r, fill);
-  _gfx->drawRoundRect(_x1, _y1, _w, _h, r, outline);
+//   uint8_t r = min(_w, _h) / 4; // Corner radius
+//   _gfx->fillRoundRect(_x1, _y1, _w, _h, r, fill);
+//   _gfx->drawRoundRect(_x1, _y1, _w, _h, r, outline);
 
-  _gfx->setCursor(_x1 + (_w / 2) - (strlen(_label) * 3 * _textsize_x),
-                  _y1 + (_h / 2) - (4 * _textsize_y));
-  _gfx->setTextColor(text);
-  _gfx->setTextSize(_textsize_x, _textsize_y);
-  _gfx->print(_label);
-}
+//   _gfx->setCursor(_x1 + (_w / 2) - (strlen(_label) * 3 * _textsize_x),
+//                   _y1 + (_h / 2) - (4 * _textsize_y));
+//   _gfx->setTextColor(text);
+//   _gfx->setTextSize(_textsize_x, _textsize_y);
+//   _gfx->print(_label);
+// }
 
 /**************************************************************************/
 /*!

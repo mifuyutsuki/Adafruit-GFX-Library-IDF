@@ -1,21 +1,26 @@
 #ifndef _ADAFRUIT_GFX_H
 #define _ADAFRUIT_GFX_H
 
-#if ARDUINO >= 100
-#include "Arduino.h"
-#include "Print.h"
-#else
-#include "WProgram.h"
-#endif
+// #if ARDUINO >= 100
+// #include "Arduino.h"
+// #include "Print.h"
+// #else
+// #include "WProgram.h"
+// #endif
+#include <stdio.h>
+#include <stdint.h>
+#include <cstring>
 #include "gfxfont.h"
 
-#include <Adafruit_I2CDevice.h>
-#include <Adafruit_SPIDevice.h>
+using std::memset;
+
+// #include <Adafruit_I2CDevice.h>
+// #include <Adafruit_SPIDevice.h>
 
 /// A generic graphics superclass that can handle all sorts of drawing. At a
 /// minimum you can subclass and provide drawPixel(). At a maximum you can do a
 /// ton of overriding to optimize. Used for any/all Adafruit displays!
-class Adafruit_GFX : public Print {
+class Adafruit_GFX {
 
 public:
   Adafruit_GFX(int16_t w, int16_t h); // Constructor
@@ -113,10 +118,10 @@ public:
                 uint16_t bg, uint8_t size_x, uint8_t size_y);
   void getTextBounds(const char *string, int16_t x, int16_t y, int16_t *x1,
                      int16_t *y1, uint16_t *w, uint16_t *h);
-  void getTextBounds(const __FlashStringHelper *s, int16_t x, int16_t y,
-                     int16_t *x1, int16_t *y1, uint16_t *w, uint16_t *h);
-  void getTextBounds(const String &str, int16_t x, int16_t y, int16_t *x1,
-                     int16_t *y1, uint16_t *w, uint16_t *h);
+  // void getTextBounds(const __FlashStringHelper *s, int16_t x, int16_t y,
+  //                    int16_t *x1, int16_t *y1, uint16_t *w, uint16_t *h);
+  // void getTextBounds(const String &str, int16_t x, int16_t y, int16_t *x1,
+  //                    int16_t *y1, uint16_t *w, uint16_t *h);
   void setTextSize(uint8_t s);
   void setTextSize(uint8_t sx, uint8_t sy);
   void setFont(const GFXfont *f = NULL);
@@ -180,12 +185,8 @@ public:
   /**********************************************************************/
   void cp437(bool x = true) { _cp437 = x; }
 
-  using Print::write;
-#if ARDUINO >= 100
-  virtual size_t write(uint8_t);
-#else
-  virtual void write(uint8_t);
-#endif
+  // using Print::write;
+  size_t write(uint8_t);
 
   /************************************************************************/
   /*!
@@ -269,7 +270,7 @@ public:
                     uint16_t h, uint16_t outline, uint16_t fill,
                     uint16_t textcolor, char *label, uint8_t textsize_x,
                     uint8_t textsize_y);
-  void drawButton(bool inverted = false);
+  // void drawButton(bool inverted = false);
   bool contains(int16_t x, int16_t y);
 
   /**********************************************************************/
